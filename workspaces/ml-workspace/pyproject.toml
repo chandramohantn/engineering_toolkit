@@ -1,0 +1,31 @@
+[project]
+name = "ml-workspace"
+version = "0.1.0"
+authors = [
+    { name = "Chandramohan T N" }
+]
+description = "Classical Machine Learning workspace"
+dependencies = [
+    "numpy",
+    "pandas",
+    "polars",
+    "scipy",
+    "matplotlib",
+    "plotly",
+    "seaborn",
+    "statsmodels",
+    "scikit-learn",
+    "xgboost",
+    "lightgbm",
+    "catboost",
+    "mlflow",
+    "tensorboard",
+    "pandera",
+    "ydata-profiling",
+    "pyarrow",
+    "fastparquet",
+    "duckdb",
+    "sqlalchemy",
+    "psycopg[binary]",
+    "jupyterlab-git",
+]

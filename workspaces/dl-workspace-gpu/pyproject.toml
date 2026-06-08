@@ -1,0 +1,35 @@
+[project]
+name = "dl-workspace-gpu"
+version = "0.1.0"
+authors = [
+    { name = "Chandramohan T N" }
+]
+description = "Deep Learning GPU workspace"
+dependencies = [
+    "numpy",
+    "pandas",
+    "polars",
+    "matplotlib",
+    "plotly",
+    "seaborn",
+    "mlflow",
+    "tensorboard",
+    "pandera",
+    "pyarrow",
+    "fastparquet",
+    "duckdb",
+    "jupyterlab-git",
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "lightning",
+    "accelerate",
+    "torchmetrics",
+    "transformers",
+    "datasets",
+    "tokenizers",
+    "sentencepiece",
+    "onnx",
+    "onnxruntime-gpu",
+    "pynvml",
+]

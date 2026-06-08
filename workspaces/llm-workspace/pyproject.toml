@@ -1,0 +1,17 @@
+[project]
+name = "llm-workspace"
+version = "0.1.0"
+authors = [
+    { name = "Chandramohan T N" }
+]
+description = "LLM experimentation workspace"
+dependencies = [
+    "trl",
+    "peft",
+    "ragas",
+    "deepeval",
+    "opensearch-py",
+    "qdrant-client",
+    "langgraph",
+    "llama-index",
+]

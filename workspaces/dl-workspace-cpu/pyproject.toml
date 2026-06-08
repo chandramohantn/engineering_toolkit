@@ -1,0 +1,44 @@
+[project]
+name = "dl-workspace-cpu"
+version = "0.1.0"
+authors = [
+    { name = "Chandramohan T N" }
+]
+description = "Deep Learning CPU workspace"
+dependencies = [
+    "numpy",
+    "pandas",
+    "polars",
+    "matplotlib",
+    "plotly",
+    "seaborn",
+    "mlflow",
+    "tensorboard",
+    "pandera",
+    "pyarrow",
+    "fastparquet",
+    "duckdb",
+    "jupyterlab-git",
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "lightning",
+    "accelerate",
+    "torchmetrics",
+    "transformers",
+    "datasets",
+    "tokenizers",
+    "sentencepiece",
+    "onnx",
+    "onnxruntime",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+torchaudio = { index = "pytorch-cpu" }

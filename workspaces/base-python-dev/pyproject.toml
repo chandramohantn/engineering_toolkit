@@ -1,0 +1,25 @@
+[project]
+name = "base-python-dev"
+version = "0.1.0"
+authors = [
+    { name = "Chandramohan T N" }
+]
+description = "Base development environment"
+dependencies = [
+    "fastapi",
+    "jupyterlab",
+    "ipywidgets",
+    "ruff",
+    "mypy",
+    "pyright",
+    "bandit",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "pyyaml",
+    "toml",
+    "orjson",
+    "python-dotenv",
+    "pydantic",
+]

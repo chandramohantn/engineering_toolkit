@@ -1,0 +1,33 @@
+services:
+  base-python-dev:
+    build:
+      context: ./base-python-dev
+    image: base-python-dev:latest
+
+  ml-workspace:
+    build:
+      context: ./ml-workspace
+    image: ml-workspace:latest
+    depends_on:
+      - base-python-dev
+
+  dl-workspace-cpu:
+    build:
+      context: ./dl-workspace-cpu
+    image: dl-workspace-cpu:latest
+    depends_on:
+      - base-python-dev
+
+  dl-workspace-gpu:
+    build:
+      context: ./dl-workspace-gpu
+    image: dl-workspace-gpu:latest
+    depends_on:
+      - base-python-dev
+
+  llm-workspace:
+    build:
+      context: ./llm-workspace
+    image: llm-workspace:latest
+    depends_on:
+      - dl-workspace-cpu
