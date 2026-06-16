@@ -18,7 +18,6 @@ dependencies = [
     "pyarrow",
     "fastparquet",
     "duckdb",
-    "jupyterlab-git",
     "torch",
     "torchvision",
     "torchaudio",
@@ -31,6 +30,11 @@ dependencies = [
     "sentencepiece",
     "onnx",
     "onnxruntime",
+]
+
+[project.optional-dependencies]
+extra = [
+    "jupyterlab-git",
 ]
 
 [[tool.uv.index]]
