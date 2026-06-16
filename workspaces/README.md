@@ -14,20 +14,45 @@ base-python-dev
 
 ## How to Build
 
-To build all images in the correct order, run:
+You can use the provided `Makefile` for convenient management, or use Docker Compose directly.
 
+### Using Make (Recommended)
+
+To see all available commands:
+```bash
+make help
+```
+
+Common build commands:
+```bash
+make build-all      # Build everything in order
+make build-ml       # Build only the ML workspace
+make build-llm      # Build the LLM workspace
+```
+
+### Using Docker Compose Directly
+
+To build all images in the correct order:
 ```bash
 docker compose build
 ```
 
 Alternatively, to build a specific image:
-
 ```bash
 docker compose build ml-workspace
 ```
 
 ## How to Run
 
+### Using Make
+
+```bash
+make up-ml          # Starts ML workspace
+make up-llm         # Starts LLM workspace
+make down           # Stops all workspaces
+```
+
+### Using Docker Run
 Each image is configured to start JupyterLab by default on port 8888.
 
 ```bash

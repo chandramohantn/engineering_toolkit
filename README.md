@@ -28,7 +28,7 @@ The toolkit includes a wide array of specialized skills that can be activated to
 
 ## 🐳 Development Workspaces (`workspaces/`)
 
-Optimized Docker images for various stages of AI and Machine Learning development:
+Optimized Docker images for various stages of AI and Machine Learning development. A **Makefile** is provided for easy management of the build and run lifecycle.
 
 - **base-python-dev:** Lean foundation with `uv`, JupyterLab, and code quality tools.
 - **ml-workspace:** Classical ML (Scikit-learn, XGBoost, Polars, DuckDB).
