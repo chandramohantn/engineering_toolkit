@@ -40,8 +40,13 @@ build-dl-gpu: build-base
 build-llm: build-dl-cpu
 	docker compose build llm-workspace
 
-build-all:
-	docker compose build
+# Sequential build to avoid parallel resolution issues with local images
+build-all: 
+	@$(MAKE) build-base
+	@$(MAKE) build-ml
+	@$(MAKE) build-dl-cpu
+	@$(MAKE) build-dl-gpu
+	@$(MAKE) build-llm
 
 # Run Targets
 up-ml:
