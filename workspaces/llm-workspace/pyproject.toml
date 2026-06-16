@@ -8,10 +8,18 @@ description = "LLM experimentation workspace"
 dependencies = [
     "trl",
     "peft",
-    "ragas",
-    "deepeval",
     "opensearch-py",
     "qdrant-client",
     "langgraph",
     "llama-index",
+    "jupyterlab",
+]
+
+[project.optional-dependencies]
+eval = [
+    "ragas",
+    "deepeval",
+]
+extra = [
+    "jupyterlab-git",
 ]
