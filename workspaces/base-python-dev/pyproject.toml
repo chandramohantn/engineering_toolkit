@@ -8,18 +8,20 @@ description = "Base development environment"
 dependencies = [
     "fastapi",
     "jupyterlab",
-    "ipywidgets",
-    "ruff",
-    "mypy",
-    "pyright",
-    "bandit",
-    "pre-commit",
-    "pytest",
-    "pytest-cov",
-    "pytest-mock",
     "pyyaml",
-    "toml",
     "orjson",
     "python-dotenv",
     "pydantic",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "mypy",
+    "pre-commit",
+]
+test = [
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
 ]

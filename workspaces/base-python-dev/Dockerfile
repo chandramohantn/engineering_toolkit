@@ -1,5 +1,7 @@
-# Use a slim Python base image
-FROM python:3.12-slim
+# syntax=docker/dockerfile:1
+
+# Stage 1: Builder
+FROM python:3.12-slim AS builder
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
@@ -7,7 +9,7 @@ ENV PYTHONUNBUFFERED=1 \
     UV_COMPILE_BYTECODE=1 \
     UV_LINK_MODE=copy
 
-# Install system dependencies
+# Install system dependencies needed for building
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     curl \
@@ -18,16 +20,47 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # Set working directory
-WORKDIR /workspace
+WORKDIR /app
 
-# Copy dependency file
+# Copy dependency files
 COPY pyproject.toml .
 
-# Install core tools using uv
-RUN uv pip install --system .
+# Install dependencies into a virtual environment
+# To include development/testing tools, change to: uv pip install ".[dev,test]"
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv venv /opt/venv && \
+    . /opt/venv/bin/activate && \
+    uv pip install .
+
+# Stage 2: Runtime
+FROM python:3.12-slim
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PATH="/opt/venv/bin:$PATH"
+
+# Create a non-root user
+RUN groupadd -g 1000 appuser && \
+    useradd -r -u 1000 -g appuser appuser && \
+    mkdir /workspace && \
+    chown appuser:appuser /workspace
+
+# Copy virtual environment from builder
+COPY --from=builder --chown=appuser:appuser /opt/venv /opt/venv
+
+# Set working directory
+WORKDIR /workspace
+
+# Switch to non-root user
+USER appuser
 
 # Expose JupyterLab port
 EXPOSE 8888
+
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8888/api || exit 1
 
 # Default command
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
