@@ -1,6 +1,6 @@
 # Makefile for Engineering Toolkit Workspaces
 
-.PHONY: help build-all build-base build-ml build-dl-cpu build-dl-gpu build-llm up-ml up-dl-cpu up-dl-gpu up-llm down clean
+.PHONY: help build-all build-base build-ml build-dl-cpu build-dl-gpu build-llm up-base up-ml up-dl-cpu up-dl-gpu up-llm logs-base logs-ml logs-dl-cpu logs-dl-gpu logs-llm down clean
 
 # Default target
 help:
@@ -15,10 +15,14 @@ help:
 	@echo "  make build-llm      - Build the LLM workspace (depends on dl-cpu)"
 	@echo ""
 	@echo "Run Targets:"
-	@echo "  make up-ml          - Start the ML workspace (JupyterLab on :8888)"
-	@echo "  make up-dl-cpu      - Start the DL CPU workspace (JupyterLab on :8888)"
-	@echo "  make up-dl-gpu      - Start the DL GPU workspace (JupyterLab on :8888)"
-	@echo "  make up-llm         - Start the LLM workspace (JupyterLab on :8888)"
+	@echo "  make up-ml          - Start the ML workspace in background"
+	@echo "  make up-dl-cpu      - Start the DL CPU workspace in background"
+	@echo "  make up-dl-gpu      - Start the DL GPU workspace in background"
+	@echo "  make up-llm         - Start the LLM workspace in background"
+	@echo "  make logs-ml        - Follow logs for ML workspace"
+	@echo "  make logs-dl-cpu    - Follow logs for DL CPU workspace"
+	@echo "  make logs-dl-gpu    - Follow logs for DL GPU workspace"
+	@echo "  make logs-llm       - Follow logs for LLM workspace"
 	@echo "  make down           - Stop all running workspace containers"
 	@echo ""
 	@echo "Maintenance:"
@@ -49,17 +53,36 @@ build-all:
 	@$(MAKE) build-llm
 
 # Run Targets
+up-base:
+	docker compose up -d base-python-dev
+
 up-ml:
-	docker compose up ml-workspace
+	docker compose up -d ml-workspace
 
 up-dl-cpu:
-	docker compose up dl-workspace-cpu
+	docker compose up -d dl-workspace-cpu
 
 up-dl-gpu:
-	docker compose up dl-workspace-gpu
+	docker compose up -d dl-workspace-gpu
 
 up-llm:
-	docker compose up llm-workspace
+	docker compose up -d llm-workspace
+
+# Log Targets
+logs-base:
+	docker compose logs -f base-python-dev
+
+logs-ml:
+	docker compose logs -f ml-workspace
+
+logs-dl-cpu:
+	docker compose logs -f dl-workspace-cpu
+
+logs-dl-gpu:
+	docker compose logs -f dl-workspace-gpu
+
+logs-llm:
+	docker compose logs -f llm-workspace
 
 down:
 	docker compose down
