@@ -29,7 +29,7 @@ COPY pyproject.toml .
 # Note: Since this often involves heavy model-loading libs, 
 # we use the cache mount to speed up re-builds.
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv venv /opt/venv && \
+    uv venv --seed /opt/venv && \
     . /opt/venv/bin/activate && \
     uv pip install .
 

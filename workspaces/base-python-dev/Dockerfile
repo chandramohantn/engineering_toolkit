@@ -28,7 +28,7 @@ COPY pyproject.toml .
 # Install dependencies into a virtual environment
 # To include development/testing tools, change to: uv pip install ".[dev,test]"
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv venv /opt/venv && \
+    uv venv --seed /opt/venv && \
     . /opt/venv/bin/activate && \
     uv pip install .
 

@@ -30,7 +30,7 @@ COPY pyproject.toml .
 # onnxruntime-gpu is in the optional [gpu] group to allow builds on ARM64 (Mac).
 # To install it on x86_64, use: uv pip install ".[gpu]"
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv venv /opt/venv && \
+    uv venv --seed /opt/venv && \
     . /opt/venv/bin/activate && \
     uv pip install .
 
