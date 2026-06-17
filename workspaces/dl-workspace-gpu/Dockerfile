@@ -26,7 +26,9 @@ WORKDIR /app
 COPY pyproject.toml .
 
 # Install dependencies into a virtual environment
-# Note: This will install GPU-enabled PyTorch by default
+# Note: This will install GPU-enabled PyTorch by default.
+# onnxruntime-gpu is in the optional [gpu] group to allow builds on ARM64 (Mac).
+# To install it on x86_64, use: uv pip install ".[gpu]"
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv venv /opt/venv && \
     . /opt/venv/bin/activate && \
