@@ -27,6 +27,7 @@ dependencies = [
     "duckdb",
     "sqlalchemy",
     "psycopg[binary]",
+    "jupyterlab",
 ]
 
 [project.optional-dependencies]

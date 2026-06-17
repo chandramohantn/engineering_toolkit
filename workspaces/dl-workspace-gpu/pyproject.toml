@@ -30,6 +30,7 @@ dependencies = [
     "sentencepiece",
     "onnx",
     "pynvml",
+    "jupyterlab",
 ]
 
 [project.optional-dependencies]
