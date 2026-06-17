@@ -40,9 +40,8 @@ ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PATH="/opt/venv/bin:$PATH"
 
-# Create a non-root user
-RUN groupadd -g 1000 appuser && \
-    useradd -r -u 1000 -g appuser appuser && \
+# Create a non-root user with a home directory
+RUN useradd -m -u 1000 appuser && \
     mkdir /workspace && \
     chown appuser:appuser /workspace
 
