@@ -13,6 +13,8 @@ services:
     image: base-python-dev:latest
     ports:
       - "8888:8888"
+    volumes:
+      - ${PROJECT_PATH:-./base-python-dev}:/workspace
 
   ml-workspace:
     build:
@@ -20,6 +22,8 @@ services:
     image: ml-workspace:latest
     ports:
       - "8888:8888"
+    volumes:
+      - ${PROJECT_PATH:-./base-python-dev}:/workspace
 
   dl-workspace-cpu:
     build:
@@ -27,6 +31,8 @@ services:
     image: dl-workspace-cpu:latest
     ports:
       - "8888:8888"
+    volumes:
+      - ${PROJECT_PATH:-./base-python-dev}:/workspace
 
   dl-workspace-gpu:
     build:
@@ -34,6 +40,8 @@ services:
     image: dl-workspace-gpu:latest
     ports:
       - "8888:8888"
+    volumes:
+      - ${PROJECT_PATH:-./base-python-dev}:/workspace
 
   llm-workspace:
     build:
@@ -41,3 +49,5 @@ services:
     image: llm-workspace:latest
     ports:
       - "8888:8888"
+    volumes:
+      - ${PROJECT_PATH:-./base-python-dev}:/workspace
