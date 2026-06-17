@@ -11,31 +11,33 @@ services:
     build:
       context: ./base-python-dev
     image: base-python-dev:latest
+    ports:
+      - "8888:8888"
 
   ml-workspace:
     build:
       context: ./ml-workspace
     image: ml-workspace:latest
-    depends_on:
-      - base-python-dev
+    ports:
+      - "8888:8888"
 
   dl-workspace-cpu:
     build:
       context: ./dl-workspace-cpu
     image: dl-workspace-cpu:latest
-    depends_on:
-      - base-python-dev
+    ports:
+      - "8888:8888"
 
   dl-workspace-gpu:
     build:
       context: ./dl-workspace-gpu
     image: dl-workspace-gpu:latest
-    depends_on:
-      - base-python-dev
+    ports:
+      - "8888:8888"
 
   llm-workspace:
     build:
       context: ./llm-workspace
     image: llm-workspace:latest
-    depends_on:
-      - dl-workspace-cpu
+    ports:
+      - "8888:8888"
