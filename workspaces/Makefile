@@ -25,6 +25,9 @@ help:
 	@echo "  make logs-llm       - Follow logs for LLM workspace"
 	@echo "  make down           - Stop all running workspace containers"
 	@echo ""
+	@echo "Monitoring:"
+	@echo "  Dozzle (Log Viewer) - http://localhost:9999"
+	@echo ""
 	@echo "Maintenance:"
 	@echo "  make clean          - Remove all toolkit images"
 
@@ -53,20 +56,21 @@ build-all:
 	@$(MAKE) build-llm
 
 # Run Targets
+# Note: dozzle is started automatically with every workspace to provide browser-based log monitoring
 up-base:
-	docker compose up -d base-python-dev
+	docker compose up -d base-python-dev dozzle
 
 up-ml:
-	docker compose up -d ml-workspace
+	docker compose up -d ml-workspace dozzle
 
 up-dl-cpu:
-	docker compose up -d dl-workspace-cpu
+	docker compose up -d dl-workspace-cpu dozzle
 
 up-dl-gpu:
-	docker compose up -d dl-workspace-gpu
+	docker compose up -d dl-workspace-gpu dozzle
 
 up-llm:
-	docker compose up -d llm-workspace
+	docker compose up -d llm-workspace dozzle
 
 # Log Targets
 logs-base:

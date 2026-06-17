@@ -66,6 +66,14 @@ To run the GPU-enabled image, ensure you have the [NVIDIA Container Toolkit](htt
 docker run --gpus all -p 8888:8888 dl-workspace-gpu:latest
 ```
 
+## Monitoring
+
+This toolkit includes **Dozzle**, a real-time web-based log viewer for Docker containers.
+
+- **Access**: [http://localhost:9999](http://localhost:9999)
+- **Features**: Live log streaming, search/filtering, and container resource stats directly in your browser.
+- **Automatic Startup**: Running any `make up-*` command will automatically start the Dozzle service alongside your chosen workspace.
+
 ## Image Descriptions
 
 - **base-python-dev**: Lean foundation with `uv`, JupyterLab, and code quality tools.
