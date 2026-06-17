@@ -29,11 +29,13 @@ dependencies = [
     "tokenizers",
     "sentencepiece",
     "onnx",
-    "onnxruntime-gpu",
     "pynvml",
 ]
 
 [project.optional-dependencies]
+gpu = [
+    "onnxruntime-gpu",
+]
 extra = [
     "jupyterlab-git",
 ]
